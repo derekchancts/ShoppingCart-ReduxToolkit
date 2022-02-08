@@ -2,18 +2,21 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
+// action creator
 export const productsFetch = createAsyncThunk(
   "products/productsFetch",
-  async () => {
+  async (id=null, { rejectWithValue }) => {
     try {
       const response = await axios.get(
         // "https://chaoo-online-shop.herokuapp.com/products"
         "http://localhost:5000/products"
       );
       console.log({ response })
-      return response.data;
+      return response?.data;
     } catch (error) {
       console.log(error);
+      // return rejectWithValue(error.response.data)
+      return rejectWithValue("an error occurred")
     }
   }
 );
@@ -22,6 +25,7 @@ export const productsFetch = createAsyncThunk(
 const initialState = {
   items: [],
   status: null,
+  error: null
 };
 
 
@@ -29,8 +33,8 @@ const initialState = {
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
-  extraReducers: {
+  reducers: {},  // will generate action creators, and handle the state for the action creators
+  extraReducers: {  // will NOT generate action creators. only handles the action creators and their action types - pending, fulfilled, rejected
     [productsFetch.pending]: (state, action) => {
       state.status = "pending";
     },
@@ -40,6 +44,7 @@ const productsSlice = createSlice({
     },
     [productsFetch.rejected]: (state, action) => {
       state.status = "rejected";
+      state.error = action.payload
     },
   }
 
