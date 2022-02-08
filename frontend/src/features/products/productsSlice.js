@@ -11,7 +11,7 @@ export const productsFetch = createAsyncThunk(
         // "https://chaoo-online-shop.herokuapp.com/products"
         "http://localhost:5000/products"
       );
-      console.log({ response })
+      // console.log({ response })
       return response?.data;
     } catch (error) {
       console.log(error);

@@ -120,3 +120,15 @@
   outline: none;
   cursor: pointer;
 }
+.home-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+.home-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
