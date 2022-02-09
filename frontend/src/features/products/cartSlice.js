@@ -56,8 +56,8 @@ const cartSlice = createSlice({
         state.cartItems[itemIndex].cartQuantity -= 1;
         toast.info("Decreased product quantity");
       } else if (state.cartItems[itemIndex].cartQuantity === 1) {
-        const nextCartItems = state.cartItems.filter(cartItem => cartItem.id !== action.payload);
-        state.cartItems = nextCartItems;
+        const updatedCartItems = state.cartItems.filter(cartItem => cartItem.id !== action.payload);
+        state.cartItems = updatedCartItems;
         toast.error("Product removed from cart");
       }
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));

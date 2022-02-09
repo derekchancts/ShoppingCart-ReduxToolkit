@@ -64,7 +64,7 @@ const Cart = () => {
 
                     <div className="cart-product">
                       <img src={cartItem.image} alt={cartItem.name} />
-                      <div>
+                      <div className="cart-product-description">
                         <h3>{cartItem.name}</h3>
                         <p>{cartItem.desc}</p>
                         {/* <button onClick={() => handleRemoveFromCart(cartItem)}> */}
